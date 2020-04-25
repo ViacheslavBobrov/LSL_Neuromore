@@ -17,7 +17,7 @@ The script redirects LSL stream to OSC, which Neuromore Studio takes as its inpu
 1. Run  `python stream_data.py`
 1. Open Neuromore Studio and configure OSC Server (`Edit -> Settings`) to listen on input port 4545, address 0.0.0.0 (if everything runs on a local machine)
 1. In the Studio create a Classifier and create 4 (or 5 for aux channel) OSC Input nodes
-![Screenshot](osc_nodes_screenshot.PNG)
+![Screenshot](screenshot.png)
 1. Configure each node to listen to one of the OSC addresses (`/muse/tp9`, `muse/af7` etc.) and set the sampling rate to 256
 1. To see the raw data: `View -> Add -> Signal View`
 
