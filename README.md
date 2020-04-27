@@ -1,7 +1,9 @@
-# Muse Neuromore
+# LSL for Neuromore Studio
 Connecting Muse headband to Neuromore Studio
 
-The script redirects LSL stream to OSC, which Neuromore Studio takes as its input. Below is the instruction for Windows 10. For the other platforms the steps are similar, except no need for running BlueMuse, becasue muse-lsl can be used instead (https://github.com/alexandrebarachant/muse-lsl)
+The script redirects LSL stream to OSC, which Neuromore Studio takes as its input. 
+The script connects Muse headband, but in theory it can work with other devices as long as the data from them goes thought LSL stream.
+Below is the instruction for Windows 10. For the other platforms the steps are similar, except no need for running BlueMuse, becasue muse-lsl can be used instead (https://github.com/alexandrebarachant/muse-lsl)
 
 ### Prerequisites
 

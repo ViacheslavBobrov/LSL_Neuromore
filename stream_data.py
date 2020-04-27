@@ -4,28 +4,22 @@ from threading import Thread
 from time import sleep
 
 
-class MuseLslToOscStreamer:
+class LslToOscStreamer:
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, stream_channels):
         self.client = udp_client.SimpleUDPClient(host, port)
         self.inlet = None
-        self.stream_channels = [
-            "/muse/tp9",
-            "/muse/af7",
-            "/muse/af8",
-            "/muse/tp10",
-            "/muse/aux"
-        ]
+        self.stream_channels = stream_channels
         self.is_streaming = False
 
-    def connect(self):
-        streams = resolve_byprop('type', 'EEG', timeout=5)
+    def connect(self, prop='type', value='EEG'):
+        streams = resolve_byprop(prop, value, timeout=5)
         self.inlet = StreamInlet(streams[0], max_chunklen=12)
         return self.inlet is not None
 
     def stream_data(self):
         if self.inlet is None:
-            raise Exception("Muse lsl stream is not connected")
+            raise Exception("LSL stream is not connected")
         self.is_streaming = True
         streaming_thread = Thread(target=self._stream_handler)
         streaming_thread.setDaemon(True)
@@ -46,8 +40,15 @@ if __name__ == "__main__":
     host = "127.0.0.1"
     port = 4545
     stream_time_sec = 3600
+    muse_channels = [
+        "/muse/tp9",
+        "/muse/af7",
+        "/muse/af8",
+        "/muse/tp10",
+        "/muse/aux"
+    ]
 
-    streamer = MuseLslToOscStreamer(host, port)
+    streamer = LslToOscStreamer(host, port, muse_channels)
     streamer.connect()
 
     print("Start streaming data to {}:{} for {} seconds".format(host, port, stream_time_sec))
