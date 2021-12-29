@@ -22,7 +22,7 @@ class LslToOscStreamer:
             raise Exception("LSL stream is not connected")
         self.is_streaming = True
         streaming_thread = Thread(target=self._stream_handler)
-        streaming_thread.setDaemon(True)
+        streaming_thread.daemon = True
         streaming_thread.start()
 
     def _stream_handler(self):
